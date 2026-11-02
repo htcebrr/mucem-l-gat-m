@@ -1,35 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 350">
-<defs><linearGradient id="h" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b17a54"/><stop offset=".48" stop-color="#75452f"/><stop offset="1" stop-color="#38201e"/></linearGradient><linearGradient id="d" x2=".7" y2="1"><stop stop-color="#ffe6a3"/><stop offset=".6" stop-color="#f6c665"/><stop offset="1" stop-color="#d99c42"/></linearGradient><radialGradient id="s"><stop stop-color="#ffe8ce"/><stop offset="1" stop-color="#edb991"/></radialGradient><filter id="shadow"><feGaussianBlur stdDeviation="3"/></filter></defs>
-<ellipse cx="118" cy="340" rx="75" ry="7" fill="#46232a" opacity=".13" filter="url(#shadow)"/>
-<!-- long flowing hair --> <path d="M48 117C22 80 39 30 91 18C148 0 189 38 185 94C204 133 177 158 203 207C219 249 193 278 163 267C137 293 96 279 75 264C34 275 15 240 37 207C10 172 28 142 48 117Z" fill="url(#h)" stroke="#5b3429" stroke-width="3"/>
-<path d="M48 114C20 160 54 184 35 221C27 245 42 258 61 256M176 106C201 150 173 180 196 216C208 237 194 259 176 260" fill="none" stroke="#d4a16c" stroke-width="4" opacity=".65"/>
-<!-- legs shoes --> <path d="M82 270L78 313Q78 322 90 324L101 317L110 270M137 267L136 312Q137 324 150 322L157 315L155 264" fill="#f4c5a6" stroke="#ad795c" stroke-width="2"/>
-<path d="M78 311Q64 318 69 330Q90 340 109 330L102 316Q90 320 78 311ZM136 312Q132 327 140 333Q164 340 180 328Q178 317 157 314Z" fill="#fffaf1" stroke="#a98475" stroke-width="2.5"/>
-<path d="M75 323L106 323M139 326L177 326" stroke="#d9c3ad" stroke-width="2"/>
-<!-- arms --> <path d="M77 161C52 170 46 195 60 208L82 191M159 160C180 170 186 196 165 211L147 193" fill="#f3c29e" stroke="#b37d60" stroke-width="3"/>
-<!-- dress --> <path d="M89 154Q119 142 150 154L159 202Q181 242 193 274Q122 304 48 275Q62 238 79 203Z" fill="url(#d)" stroke="#c48c43" stroke-width="3"/>
-<path d="M82 190Q119 209 155 190M54 272Q121 291 188 272" fill="none" stroke="#fff1b8" stroke-width="4" opacity=".9"/>
-<path d="M88 154Q119 172 151 154" fill="none" stroke="#fff4c8" stroke-width="5"/>
-<!-- daisy pattern --> <g fill="#fffaf1" stroke="#f7f0df" stroke-width="1.5"><g id="flower"><ellipse cy="-9" ry="9" rx="4.5"/><ellipse cy="-9" ry="9" rx="4.5" transform="rotate(60)"/><ellipse cy="-9" ry="9" rx="4.5" transform="rotate(120)"/><circle r="4.5" fill="#e4a93f" stroke="none"/></g><use href="#flower" transform="translate(87 220) scale(.8)"/><use href="#flower" transform="translate(149 234) scale(1.1)"/><use href="#flower" transform="translate(116 272) scale(.9)"/><use href="#flower" transform="translate(67 261) scale(.7)"/><use href="#flower" transform="translate(162 269) scale(.65)"/><use href="#flower" transform="translate(131 197) scale(.55)"/></g>
-<!-- neck and face --> <path d="M105 137L103 158Q120 174 137 156L134 136" fill="#f4c6a7" stroke="#b17a5f" stroke-width="2"/>
-<ellipse cx="119" cy="96" rx="56" ry="65" fill="url(#s)" stroke="#b47d61" stroke-width="2.5"/>
-<ellipse cx="64" cy="107" rx="8" ry="13" fill="#f2c09e"/><ellipse cx="174" cy="107" rx="8" ry="13" fill="#f2c09e"/>
-<!-- bangs --> <path d="M61 91C57 42 82 27 116 27C161 23 185 52 176 98C167 78 161 67 152 59C138 76 113 72 102 57C94 76 76 84 61 91Z" fill="url(#h)" stroke="#6a402d" stroke-width="2"/>
-<path d="M98 38C88 57 76 68 62 72M138 37C151 52 163 60 171 80" stroke="#c99a6d" stroke-width="3" fill="none" opacity=".8"/>
-<!-- eyes --> <path d="M79 103Q93 89 107 103M132 103Q147 89 160 103" stroke="#573c33" stroke-width="4" fill="none" stroke-linecap="round"/>
-<ellipse cx="94" cy="105" rx="10" ry="13" fill="#754735"/><ellipse cx="145" cy="105" rx="10" ry="13" fill="#754735"/><ellipse cx="95" cy="105" rx="6" ry="9" fill="#33272b"/><ellipse cx="146" cy="105" rx="6" ry="9" fill="#33272b"/><circle cx="98" cy="101" r="3.5" fill="#fff"/><circle cx="149" cy="101" r="3.5" fill="#fff"/>
-<path d="M89 87L102 89M136 89L150 87" stroke="#65402f" stroke-width="3" stroke-linecap="round"/>
-<ellipse cx="79" cy="125" rx="15" ry="8" fill="#e9958b" opacity=".45"/><ellipse cx="161" cy="125" rx="15" ry="8" fill="#e9958b" opacity=".45"/>
-<path d="M111 130Q119 141 128 130" fill="none" stroke="#aa5d59" stroke-width="3" stroke-linecap="round"/>
-<!-- refined long layered hair: soft face-framing waves and fine highlights -->
-<path d="M54 118C41 143 43 170 35 194C24 228 39 255 59 260C45 243 49 222 56 205C65 184 54 155 69 127" fill="#75442f" stroke="#533020" stroke-width="2"/>
-<path d="M180 116C197 149 182 179 198 208C215 243 199 263 175 271C190 250 181 227 175 204C166 174 186 150 169 126" fill="#633927" stroke="#48291f" stroke-width="2"/>
-<path d="M42 192C33 214 38 240 53 249M190 190C202 216 198 244 183 256M51 146C48 171 55 185 48 208M181 137C177 157 182 180 189 197" fill="none" stroke="#d4a071" stroke-width="3" opacity=".7" stroke-linecap="round"/>
-<path d="M78 52C69 66 64 77 63 93M89 43C83 62 79 76 74 84M108 34C101 52 101 65 94 76M136 38C145 52 154 58 158 71M154 48C166 59 170 70 174 88" fill="none" stroke="#d7a878" stroke-width="2.5" opacity=".78" stroke-linecap="round"/>
-<path d="M72 94Q66 109 69 125M166 92Q174 108 168 125" fill="none" stroke="#8b5337" stroke-width="5" stroke-linecap="round"/>
-<!-- hair side curls --> <path d="M66 94C45 133 54 161 42 189C27 214 44 240 58 243M173 89C188 124 174 166 188 194C203 226 188 246 176 247" fill="none" stroke="#603927" stroke-width="17" stroke-linecap="round"/>
-<path d="M58 107C46 141 59 162 47 196M180 119C171 157 188 187 187 207" fill="none" stroke="#b77f54" stroke-width="4" stroke-linecap="round"/>
-<!-- daisy hair clip --> <g transform="translate(174 66) scale(1.1)"><use href="#flower" transform="scale(1.45)"/></g>
-<!-- little book held in front --> <g transform="rotate(-7 119 205)"><rect x="91" y="175" width="59" height="76" rx="5" fill="#5b2433" stroke="#c9a66e" stroke-width="4"/><rect x="97" y="182" width="47" height="62" rx="3" fill="none" stroke="#d8b57c" stroke-width="1.5"/><path d="M106 199H136M107 224H134" stroke="#c9a66e" stroke-width="1.5"/><text x="120" y="215" text-anchor="middle" fill="#f4d59b" font-size="11" font-family="serif">MU'CEM</text></g>
-<!-- hands on book --> <path d="M72 198Q80 187 94 197L103 215Q100 226 91 220L76 209M159 195Q148 190 144 205L139 220Q145 230 153 219L166 207" fill="#f6c6a7" stroke="#b67e5d" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-label="Papatya tokalı uzun dalgalı kahverengi saçlı, sarı papatyalı elbiseli kitap tutan kız">
+<defs><linearGradient id="hair" x2=".8" y2="1"><stop stop-color="#aa6839"/><stop offset=".55" stop-color="#774024"/><stop offset="1" stop-color="#4e2b20"/></linearGradient><linearGradient id="dress" x2="1" y2="1"><stop stop-color="#f5c65c"/><stop offset="1" stop-color="#dba13b"/></linearGradient><radialGradient id="skin"><stop stop-color="#ffdb9e"/><stop offset="1" stop-color="#f2bb83"/></radialGradient><g id="daisy"><ellipse cy="-10" rx="5.2" ry="10" fill="#fff5da"/><ellipse cy="-10" rx="5.2" ry="10" fill="#fff5da" transform="rotate(60)"/><ellipse cy="-10" rx="5.2" ry="10" fill="#fff5da" transform="rotate(120)"/><circle r="5.4" fill="#dc9c36"/></g></defs>
+<ellipse cx="159" cy="546" rx="103" ry="10" fill="#492c24" opacity=".13"/>
+<!-- voluminous flowing hair -->
+<path d="M77 112C43 52 97 9 164 16C238 6 280 65 258 133C287 178 267 215 290 264C307 313 274 346 243 329C217 349 192 335 161 338C129 355 101 338 73 335C37 348 15 314 38 264C56 218 31 179 77 112Z" fill="url(#hair)" stroke="#744126" stroke-width="3"/>
+<path d="M58 200C41 238 54 265 41 290C30 315 45 330 67 329M260 191C280 239 258 272 281 300C291 315 277 330 256 330" fill="none" stroke="#c88a55" stroke-width="5" opacity=".7"/>
+<!-- legs and shoes -->
+<path d="M125 476L121 518L144 521L154 477M175 477L178 518L201 521L200 473" fill="#f5c28e" stroke="#bb885d" stroke-width="2"/>
+<path d="M119 509L146 509L146 528L120 528ZM176 509L202 509L203 528L177 528Z" fill="#fff8e9" stroke="#d9c5a9" stroke-width="2"/>
+<path d="M120 520C107 520 103 532 110 539C121 549 150 548 154 537L145 524ZM178 524C181 538 190 546 215 542C227 539 225 526 203 520Z" fill="#7e4a2e" stroke="#5c3627" stroke-width="3"/>
+<path d="M114 530L147 530M183 529L218 530" stroke="#e9c17d" stroke-width="4"/><circle cx="135" cy="530" r="3" fill="#e7b760"/><circle cx="195" cy="530" r="3" fill="#e7b760"/>
+<!-- yellow full-length daisy dress -->
+<path d="M109 266Q158 244 211 266L235 342Q257 407 270 470Q160 502 49 470Q69 406 84 343Z" fill="url(#dress)" stroke="#bc873b" stroke-width="3"/>
+<path d="M91 344Q155 366 226 344M58 465Q158 485 261 465" stroke="#fff1bb" stroke-width="3" fill="none" opacity=".6"/>
+<path d="M112 262Q160 286 207 261L198 292Q158 313 121 290Z" fill="#fff9e8" stroke="#e4cda4" stroke-width="2"/>
+<path d="M159 286L159 307" stroke="#e4cda4" stroke-width="2"/>
+<use href="#daisy" transform="translate(102 335) scale(.85)"/><use href="#daisy" transform="translate(220 328) scale(.8)"/><use href="#daisy" transform="translate(162 385) scale(1.05)"/><use href="#daisy" transform="translate(86 416) scale(.9)"/><use href="#daisy" transform="translate(233 435) scale(.9)"/><use href="#daisy" transform="translate(125 455) scale(.85)"/><use href="#daisy" transform="translate(193 468) scale(.7)"/><use href="#daisy" transform="translate(205 394) scale(.6)"/>
+<!-- puff sleeves and arms -->
+<path d="M109 270C81 256 60 281 74 315Q84 332 112 316L126 290M211 270C239 255 262 285 244 315Q230 330 210 314L198 289" fill="#e9b24e" stroke="#bc873b" stroke-width="3"/>
+<use href="#daisy" transform="translate(88 290) scale(.7)"/><use href="#daisy" transform="translate(234 296) scale(.7)"/>
+<!-- face -->
+<path d="M146 226L143 268Q162 286 180 267L177 225" fill="#f6c58e" stroke="#c58b64" stroke-width="2"/>
+<ellipse cx="160" cy="151" rx="93" ry="105" fill="url(#skin)" stroke="#ba815d" stroke-width="2"/>
+<ellipse cx="70" cy="169" rx="17" ry="24" fill="#f4c18a" stroke="#ba815d" stroke-width="2"/>
+<ellipse cx="250" cy="169" rx="15" ry="21" fill="#f4c18a" stroke="#ba815d" stroke-width="2"/>
+<ellipse cx="108" cy="190" rx="28" ry="17" fill="#eb8c68" opacity=".45"/><ellipse cx="215" cy="190" rx="28" ry="17" fill="#eb8c68" opacity=".45"/>
+<!-- eyes and expression -->
+<path d="M92 146Q115 123 138 146M181 146Q204 122 229 146" fill="none" stroke="#543323" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="118" cy="159" rx="18" ry="24" fill="#fff9e8"/><ellipse cx="204" cy="159" rx="18" ry="24" fill="#fff9e8"/>
+<ellipse cx="124" cy="159" rx="13" ry="20" fill="#3c261e"/><ellipse cx="208" cy="159" rx="13" ry="20" fill="#3c261e"/>
+<circle cx="129" cy="150" r="5" fill="white"/><circle cx="213" cy="150" r="5" fill="white"/>
+<path d="M101 125Q117 113 132 121M190 120Q207 112 221 125" stroke="#6d3e26" stroke-width="6" fill="none" stroke-linecap="round"/>
+<ellipse cx="163" cy="184" rx="10" ry="8" fill="#eaa074"/><path d="M149 207Q163 221 178 204" fill="none" stroke="#a8594a" stroke-width="4" stroke-linecap="round"/>
+<!-- side-parted sweeping fringe -->
+<path d="M68 139C50 80 82 35 148 27C184 20 219 34 245 69C252 95 250 118 244 140C230 112 217 93 193 75C183 102 165 113 144 114C154 88 153 69 147 60C130 105 101 128 68 139Z" fill="url(#hair)" stroke="#75422b" stroke-width="3"/>
+<path d="M98 59Q89 98 71 119M135 42Q126 80 109 105M191 52Q209 69 225 100" fill="none" stroke="#d6a16b" stroke-width="4" opacity=".7" stroke-linecap="round"/>
+<!-- side curls -->
+<path d="M72 155Q49 214 64 250Q37 287 58 314M248 151Q267 207 249 245Q276 286 260 316" stroke="#79432a" stroke-width="23" fill="none" stroke-linecap="round"/>
+<path d="M67 186Q56 222 68 247M252 185Q260 221 251 250" stroke="#c58a55" stroke-width="4" fill="none" opacity=".75"/>
+<use href="#daisy" transform="translate(87 110) scale(1.9)"/>
+<!-- burgundy book -->
+<g transform="rotate(-4 160 334)"><rect x="123" y="302" width="80" height="104" rx="6" fill="#682b3a" stroke="#cba66c" stroke-width="4"/><rect x="132" y="311" width="62" height="86" rx="3" fill="none" stroke="#dfba7b" stroke-width="2"/><path d="M145 328L181 328M146 382L182 382" stroke="#d7b479" stroke-width="2"/><text x="163" y="357" fill="#e9d3a1" font-size="13" text-anchor="middle" font-family="serif">MU’CEM</text><use href="#daisy" transform="translate(164 372) scale(.42)"/></g>
+<!-- hands embracing book -->
+<path d="M98 325Q109 315 123 330L146 352Q152 362 140 367Q131 368 119 354L100 342M221 326Q211 318 202 334L184 352Q177 363 188 368Q199 368 207 355L224 340" fill="#f6c38c" stroke="#c48b64" stroke-width="2.5"/>
 </svg>
