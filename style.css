@@ -224,3 +224,11 @@
 @keyframes practiceComfort{0%,100%{transform:rotate(0)}40%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
 @media(max-width:620px){.practice-layout{grid-template-columns:1fr}.practice-companion{flex-direction:row-reverse;align-items:center}.practice-companion img{max-width:88px}.practice-companion-bubble{flex:1;min-height:0}}
 @media(prefers-reduced-motion:reduce){.practice-companion.celebrate img,.practice-companion.encourage img{animation:none}}
+
+/* Final character polish */
+.book-companion .companion-girl,.practice-companion img{filter:drop-shadow(0 9px 9px #3a192a30) drop-shadow(0 0 3px #fff2df);border-radius:24px}
+.book-companion .companion-note,.practice-companion-bubble{background:linear-gradient(155deg,#fffdf7,#fff1e5);border:1.5px solid #d8b487;box-shadow:0 7px 22px #66344318}
+.practice-companion.celebrate .practice-companion-bubble{border-color:#a5bf84;background:#f4ffed}
+.practice-companion.encourage .practice-companion-bubble{border-color:#e5bf80;background:#fff9ed}
+.dictionary-source-note{text-align:center;font-size:11px;margin:10px auto 0;max-width:540px}
+#searchResults h3{margin:22px 0 12px;color:#713747}
