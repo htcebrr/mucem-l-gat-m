@@ -262,3 +262,14 @@
 .book-intro.is-opening .closed-book-cover{transform:translateX(-50%) rotateY(-100deg) rotateZ(-2deg)!important;opacity:0!important;visibility:hidden!important}
 .book-intro.is-opening .intro-book .book-spread{opacity:1!important}
 @media(max-width:540px){.intro-book{height:290px!important}.closed-book-cover{width:clamp(195px,67%,270px)!important}.closed-book-spine{left:-18px;width:24px}.closed-book-pages{bottom:-13px;height:13px}}
+
+/* Screenshot-verified fix: hide the full-width open-book page edges while closed */
+.book-intro{box-sizing:border-box;justify-content:center!important;padding:28px 18px 38px!important;overflow:hidden}
+.intro-book{flex:none;margin:0 auto!important}
+.intro-book:before,.intro-book:after{display:none!important}
+.intro-book .book-spread{visibility:hidden!important;opacity:0!important}
+.book-intro.is-opening .intro-book .book-spread{visibility:visible!important;opacity:1!important}
+.book-intro.is-opening .intro-book:before,.book-intro.is-opening .intro-book:after{display:block!important}
+.closed-book-cover{z-index:20!important}
+.closed-book-pages{left:7%!important;right:0!important;bottom:-12px!important;height:12px!important;transform:skewX(-12deg)!important;overflow:hidden}
+@media(max-width:540px){.book-intro{padding:18px 12px 26px!important}.intro-book{height:min(290px,48vh)!important}}
