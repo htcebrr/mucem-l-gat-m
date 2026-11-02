@@ -86,7 +86,7 @@ const coachText=$('#companionText');
 const coachLines=['Harika gidiyorsun! Bir kelime daha öğrenmeye ne dersin?','Az ama düzenli çalışma, büyük ilerleme sağlar.','أحسنت! أنت تتقدم كل يوم.','Bir kelimeyi kaydet, sonra tekrar etmeyi unutma.','Devam et! Her gün biraz daha gelişiyorsun.'];let coachIndex=0;
 const oldShowPage=showPage;showPage=function(id){oldShowPage(id);if(coachText)coachText.textContent=coachLines[(coachIndex++)%coachLines.length]};
 if(coachText){setInterval(()=>{coachText.textContent=coachLines[(coachIndex++)%coachLines.length]},6500)}
-const intro=$('#bookIntro');const leaveIntro=()=>intro.classList.add('hidden');$('#enterBook').onclick=leaveIntro;setTimeout(leaveIntro,6500);
+const intro=$('#bookIntro');const leaveIntro=()=>intro.classList.add('hidden');setTimeout(()=>intro.classList.add('is-opening'),950);$('#enterBook').onclick=leaveIntro;setTimeout(leaveIntro,6500);
 let authMode='login';const modal=$('#authModal');$('#closeAuth').onclick=()=>modal.classList.remove('open');
 function setAuthMode(m){authMode=m;$('#authName').style.display=m==='register'?'block':'none';$('#authSubmit').textContent=m==='register'?'Hesap oluştur':'Giriş yap';$('#authMessage').textContent=''}
 $('#showLogin').onclick=()=>setAuthMode('login');$('#showRegister').onclick=()=>setAuthMode('register');setAuthMode('login');
