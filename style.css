@@ -105,3 +105,30 @@
  .intro-page{font-size:25px}
 }
 @media(prefers-reduced-motion:reduce){.intro-cover{animation:none;transform:rotateY(-160deg)}}
+
+
+/* Corrected closed-to-open 3D book: one front cover, hinged at the spine */
+.book-intro{justify-content:flex-start;padding:clamp(30px,8vh,78px) 18px 32px;overflow:hidden}
+.intro-book{width:min(700px,90vw);height:clamp(270px,40vw,390px);position:relative;margin:0 auto;perspective:1700px;transform-style:preserve-3d;filter:drop-shadow(0 30px 25px #10070b88);animation:bookStage 2.6s cubic-bezier(.2,.7,.25,1) .45s forwards}
+.book-spread{position:absolute;inset:0;display:flex;transform-style:preserve-3d}
+.book-spread .intro-page{width:50%;height:100%;margin:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;background:repeating-linear-gradient(0deg,#b89e7a12 0 1px,transparent 1px 7px),linear-gradient(90deg,#e4d4b9,#fff9ed 12%,#fffdf7 85%,#e3d2b5);border:1px solid #d4c09e;box-shadow:inset 0 0 22px #82613a22;color:#54202d;font:32px Amiri;gap:12px}
+.book-spread .left-page{opacity:0;animation:revealLeft .2s linear 2.3s forwards;border-radius:10px 2px 3px 14px}
+.book-spread .right-page{border-radius:2px 10px 14px 3px}
+.book-spread .intro-page small{font:12px 'DM Sans';color:#806b57}
+.book-cover{position:absolute;z-index:5;left:50%;top:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;animation:turnCover 2.6s cubic-bezier(.2,.72,.2,1) .45s forwards}
+.cover-front,.cover-inside{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;backface-visibility:hidden;border:5px double #d0ad72;border-radius:3px 10px 10px 3px}
+.cover-front{background:radial-gradient(ellipse at 55% 45%,#804451 0,#642d3b 48%,transparent 75%),linear-gradient(110deg,#35131f,#713747 24%,#542332 74%,#2b111b);color:#e7c991;box-shadow:inset 0 0 30px #16080d88,8px 8px 0 #32151f,12px 13px 0 #1d0d14}
+.cover-front:before{content:"";position:absolute;inset:13px;border:1px solid #d7b77e;border-radius:2px 7px 7px 2px;box-shadow:inset 0 0 0 4px #d7b77e20}
+.cover-front:after{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:linear-gradient(90deg,#1b0a12,#9a6570 50%,#381722);border-radius:3px 0 0 3px}
+.cover-front b{font:clamp(42px,6vw,66px) Amiri;z-index:1;text-shadow:0 3px #3c1a24,0 0 16px #e4c58c66}
+.cover-front small,.cover-front i{z-index:1;letter-spacing:2px}.cover-front i{font-style:normal;font-size:24px}
+.cover-inside{transform:rotateY(180deg);background:linear-gradient(90deg,#d7c5a7,#fff7e7 18%,#f4e8d3);color:#54202d;font:32px Amiri;box-shadow:inset 0 0 25px #8c6b4933}
+.cover-inside small{font:12px 'DM Sans';color:#806b57}
+.intro-book:before{content:"";position:absolute;z-index:1;left:50%;top:5px;bottom:-10px;width:50%;background:repeating-linear-gradient(to bottom,#e9dcc7 0 2px,#c8b594 2px 3px);border-radius:0 10px 12px 0;box-shadow:0 12px 13px #14090d66;transform:translateZ(-9px)}
+.intro-book:after{content:"";position:absolute;z-index:7;left:50%;top:0;bottom:0;width:11px;transform:translateX(-50%);background:linear-gradient(90deg,#6c432d,#d4b276 35%,#79502e 60%,#e3c68c);border-radius:5px;box-shadow:0 0 8px #21101866}
+@keyframes turnCover{0%{transform:rotateY(0deg)}100%{transform:rotateY(-166deg)}}
+@keyframes revealLeft{to{opacity:1}}
+@keyframes bookStage{0%{transform:translateX(25%) rotateX(7deg) rotateY(-2deg)}100%{transform:translateX(0) rotateX(7deg) rotateY(-2deg)}}
+.book-intro>p{margin:clamp(28px,6vh,52px) 0 12px;text-align:center}
+@media(max-width:540px){.intro-book{height:245px;width:92vw}.book-intro{padding-top:9vh}.book-spread .intro-page{font-size:24px}.cover-front b{font-size:38px}}
+@media(prefers-reduced-motion:reduce){.intro-book,.book-cover,.book-spread .left-page{animation:none}.intro-book{transform:none}.book-cover{transform:rotateY(-166deg)}.book-spread .left-page{opacity:1}}
