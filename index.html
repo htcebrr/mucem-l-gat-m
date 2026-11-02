@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MU'CEM | مُعْجَم</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">م</div><div><b>MU'CEM</b><small>مُعْجَم · KELİME DÜNYAN</small></div></div>
+    <div class="nav-label">ÇALIŞMA ALANI</div>
+    <button class="nav active" data-page="overview">⌂ <span>Genel Bakış</span></button>
+    <button class="nav" data-page="dictionary">⌕ <span>Sözlük</span></button>
+    <button class="nav" data-page="saved">☆ <span>Sözlüğüm</span><i id="savedCount">0</i></button>
+    <button class="nav" data-page="practice">✧ <span>Alıştırmalar</span></button>
+    <button class="nav" data-page="progress">▥ <span>İlerlemem</span></button>
+    <button class="nav" data-page="translation">⇄ <span>Çeviri Atölyesi</span></button>
+    <div class="sidebar-note"><span>اقرأ، تعلّم، تقدّم</span><p>Her kelime yeni bir kapı açar.</p></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><span class="eyebrow">ARAPÇA ÖĞRENME PLATFORMU</span><h1 id="pageTitle">Merhaba, hoş geldin.</h1></div><div class="date" id="today"></div></header>
+    <section class="page active" id="overview">
+      <div class="hero">
+        <div><span class="eyebrow light">BUGÜNÜN HEDEFİ</span><h2>Kelime dağarcığını<br>adım adım genişlet.</h2><p>Keşfet, kaydet, tekrar et. Arapça yolculuğunda her gün biraz daha ilerle.</p><button class="cream-btn" data-go="dictionary">Sözlüğü keşfet <span>↗</span></button></div>
+        <div class="hero-arabic">مُعْجَم<small>اكتشف الكلمة، أتقن اللغة</small></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span>Kaydedilen kelime</span><strong id="statSaved">0</strong><small>kişisel sözlüğünde</small></div>
+        <div class="stat"><span>Tamamlanan alıştırma</span><strong id="statQuiz">0</strong><small>öğrenme adımların</small></div>
+        <div class="stat"><span>Bugünkü çalışma</span><strong id="statToday">0 dk</strong><small>bu tarayıcıdaki kayıt</small></div>
+      </div>
+      <div class="section-heading"><div><span class="eyebrow">KEŞFET</span><h3>Günün kelimeleri</h3></div><button class="text-btn" data-go="dictionary">Tüm sözlük →</button></div>
+      <div class="word-cards" id="dailyWords"></div>
+      <div class="quote"><span>“</span><div><p>مَنْ جَدَّ وَجَدَ</p><small>Çalışan, çabalayan muradına erer.</small></div></div>
+    </section>
+    <section class="page" id="dictionary">
+      <div class="book">
+        <div class="book-top"><span>المعجم العربي التركي</span><span>ARAPÇA — TÜRKÇE</span></div>
+        <div class="book-title">Bir kelime ara, anlamını keşfet.</div>
+        <div class="search-wrap"><span>⌕</span><input id="searchInput" placeholder="Arapça veya Türkçe kelime yaz..." autocomplete="off"><button id="searchBtn">Ara</button></div>
+        <div class="book-bottom">Kök · Anlam · Eş anlam · Zıt anlam · Örnek kullanım</div>
+      </div>
+      <div id="searchResults" class="results"></div>
+      <div class="section-heading"><div><span class="eyebrow">SÖZLÜK</span><h3>Öne çıkan kelimeler</h3></div></div>
+      <div id="allWords" class="word-list"></div>
+    </section>
+    <section class="page" id="saved"><div class="section-heading"><div><span class="eyebrow">KİŞİSEL ARŞİVİN</span><h3>Sözlüğüm</h3><p class="muted">Daha sonra tekrar etmek istediğin kelimeler.</p></div></div><div id="savedWords" class="word-list"></div></section>
+    <section class="page" id="practice"><div class="section-heading"><div><span class="eyebrow">ÖĞREN & PEKİŞTİR</span><h3>Kelime alıştırması</h3><p class="muted">Doğru anlamı seçerek kelimeleri tekrar et.</p></div></div><div class="quiz-card"><span class="eyebrow">ANLAMINI BUL</span><div class="quiz-arabic" id="quizWord">استيعاب</div><p id="quizPrompt">Bu kelimenin Türkçe karşılığı nedir?</p><div id="quizOptions" class="options"></div><div id="quizFeedback" class="feedback"></div><button id="nextQuiz" class="primary-btn">Sonraki kelime →</button></div></section>
+    <section class="page" id="progress"><div class="section-heading"><div><span class="eyebrow">GELİŞİMİN</span><h3>İlerlemem</h3><p class="muted">Bu cihazda kaydedilen çalışma istatistiklerin.</p></div></div><div class="stats"><div class="stat"><span>Kaydedilen kelime</span><strong id="progressSaved">0</strong></div><div class="stat"><span>Doğru cevap</span><strong id="progressCorrect">0</strong></div><div class="stat"><span>Alıştırma sayısı</span><strong id="progressTotal">0</strong></div></div><div class="panel"><h3>Haftalık çalışma görünümü</h3><div class="bars"><div style="height:35%"><i>Pzt</i></div><div style="height:65%"><i>Sal</i></div><div style="height:45%"><i>Çar</i></div><div style="height:85%"><i>Per</i></div><div style="height:55%"><i>Cum</i></div><div style="height:25%"><i>Cmt</i></div><div style="height:15%"><i>Paz</i></div></div><small class="muted">Örnek görselleştirme — gerçek çalışma geçmişi entegrasyonu sonraki sürümde eklenebilir.</small></div></section>
+    <section class="page" id="translation"><div class="section-heading"><div><span class="eyebrow">ÜRETİM ZAMANI</span><h3>Çeviri atölyesi</h3><p class="muted">Kelime bilginle kısa bir cümle çevirisi dene.</p></div></div><div class="panel translation-panel"><span class="eyebrow">TÜRKÇEDEN ARAPÇAYA</span><p class="prompt" id="translationPrompt">Bilgi, insanın gelişmesine katkı sağlar.</p><textarea id="translationAnswer" placeholder="Arapça çevirini buraya yaz..."></textarea><button id="checkTranslation" class="primary-btn">Cevabımı kontrol et</button><div id="translationFeedback" class="feedback"></div><small class="muted">Not: Bu demo, otomatik yapay zekâ değerlendirmesi yapmaz; örnek cevap ve anahtar kelimeler üzerinden basit kontrol sunar.</small></div></section>
+    <footer>MU'CEM · مُعْجَم <span>Bir kelimeyle başlar.</span></footer>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
