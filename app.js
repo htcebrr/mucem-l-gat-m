@@ -82,9 +82,10 @@ $('#allWords').innerHTML=words.map(row).join('');
 window.saveWord=ar=>{let s=saved();s=s.includes(ar)?s.filter(x=>x!==ar):[...s,ar];localStorage.setItem('mucemSaved',JSON.stringify(s));updateStats();renderSaved();document.querySelectorAll('[data-save="'+ar+'"]').forEach(b=>{b.classList.toggle('is-saved',s.includes(ar));b.textContent=s.includes(ar)?'★':'☆'});};
 function row(w){const yes=saved().includes(w.ar);return `<article class="word-row"><div class="details"><div class="arabic" dir="rtl">${w.ar}</div><b>${w.tr}</b><p>Kök: ${w.root} · Eş: ${w.syn} · Zıt: ${w.ant}</p><p><i>${w.example}</i></p></div><div class="word-actions"><button class="icon-btn" onclick="speak('${w.ar}')">🔊</button><button data-save="${w.ar}" class="icon-btn ${yes?'is-saved':''}" onclick="saveWord('${w.ar}')">${yes?'★':'☆'}</button></div></article>`}
 function wordCard(w){const yes=saved().includes(w.ar);return `<article class="word-card"><div class="arabic" dir="rtl">${w.ar}</div><b>${w.tr}</b><p>${w.example}</p><button data-save="${w.ar}" class="icon-btn ${yes?'is-saved':''}" onclick="saveWord('${w.ar}')">${yes?'★ Kaydedildi':'☆ Kaydet'}</button></article>`}
-const coach=document.createElement('div');coach.className='coach';coach.innerHTML='<div class="coach-avatar">👩🏻‍🎓</div><div class="coach-bubble" id="coachText">Merhaba! Bugün birlikte yeni kelimeler öğrenelim.</div>';document.body.appendChild(coach);
+const coachText=$('#companionText');
 const coachLines=['Harika gidiyorsun! Bir kelime daha öğrenmeye ne dersin?','Az ama düzenli çalışma, büyük ilerleme sağlar.','أحسنت! أنت تتقدم كل يوم.','Bir kelimeyi kaydet, sonra tekrar etmeyi unutma.','Devam et! Her gün biraz daha gelişiyorsun.'];let coachIndex=0;
-const oldShowPage=showPage;showPage=function(id){oldShowPage(id);$('#coachText').textContent=coachLines[(coachIndex++)%coachLines.length]};
+const oldShowPage=showPage;showPage=function(id){oldShowPage(id);if(coachText)coachText.textContent=coachLines[(coachIndex++)%coachLines.length]};
+if(coachText){setInterval(()=>{coachText.textContent=coachLines[(coachIndex++)%coachLines.length]},6500)}
 const intro=$('#bookIntro');const leaveIntro=()=>intro.classList.add('hidden');$('#enterBook').onclick=leaveIntro;setTimeout(leaveIntro,6500);
 let authMode='login';const modal=$('#authModal');$('#closeAuth').onclick=()=>modal.classList.remove('open');
 function setAuthMode(m){authMode=m;$('#authName').style.display=m==='register'?'block':'none';$('#authSubmit').textContent=m==='register'?'Hesap oluştur':'Giriş yap';$('#authMessage').textContent=''}
