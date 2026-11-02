@@ -62,7 +62,8 @@ $('#dailyWords').innerHTML=words.slice(0,3).map(wordCard).join('');$('#allWords'
 let quizIndex=0,answered=false;function loadQuiz(){answered=false;let w=words[quizIndex%words.length];$('#quizWord').textContent=w.ar;let others=words.filter(x=>x!==w).sort(()=>Math.random()-.5).slice(0,3);let opts=[w,...others].sort(()=>Math.random()-.5);$('#quizOptions').innerHTML=opts.map(x=>`<button class="option" data-answer="${x.ar}">${x.tr}</button>`).join('');$('#quizFeedback').textContent='';$('#quizOptions').querySelectorAll('button').forEach(b=>b.onclick=()=>{if(answered)return;answered=true;let total=+(localStorage.getItem('mucemQuiz')||0)+1;localStorage.setItem('mucemQuiz',total);if(b.dataset.answer===w.ar){b.style.borderColor='#5b8d67';$('#quizFeedback').textContent='✓ Doğru cevap!';localStorage.setItem('mucemCorrect',+(localStorage.getItem('mucemCorrect')||0)+1)}else{$('#quizFeedback').textContent='Doğru cevap: '+w.tr}updateStats()})}
 $('#nextQuiz').onclick=()=>{quizIndex++;loadQuiz()};loadQuiz();
 const translations=[{q:'Bilgi, insanın gelişmesine katkı sağlar.',a:'العلم يساهم في تطور الإنسان.',keys:['العلم','تطور','الإنسان']},{q:'Başarı sabır ve azim gerektirir.',a:'النجاح يحتاج إلى الصبر والمثابرة.',keys:['النجاح','الصبر','المثابرة']}];let ti=0;$('#checkTranslation').onclick=()=>{let v=$('#translationAnswer').value.trim();let t=translations[ti];let hits=t.keys.filter(k=>v.includes(k)).length;$('#translationFeedback').textContent=v?(hits>=2?'Güzel! Anahtar kelimelerin çoğunu kullandın. Örnek: '+t.a:'Örnek çeviri: '+t.a):'Önce çevirini yaz.';ti=(ti+1)%translations.length;$('#translationPrompt').textContent=translations[ti].q;$('#translationAnswer').value=''};
-$('#today').textContent=new Intl.DateTimeFormat('tr-TR',{dateStyle:'long'}).format(new Date());updateStats();\n
+$('#today').textContent=new Intl.DateTimeFormat('tr-TR',{dateStyle:'long'}).format(new Date());updateStats();
+
 /* Meaning lookup, reversible bookmarks, simple local profile and study companion */
 const meaningExtras=[
 {ar:"مغامرات",tr:"mac eralar",root:"غ م ر",syn:"رحلات — تجارب",ant:"—",example:"تبدأ المغامرات أحياناً بخطوة صغيرة."},
@@ -76,7 +77,8 @@ const meaningExtras=[
 {ar:"نضج",tr:"olgunluk",root:"ن ض ج",syn:"اكتمال — رشد",ant:"طفولة",example:"تساهم التجارب في نضج الشخصية."},
 {ar:"سياق",tr:"bağlam",root:"س و ق",syn:"إطار — مضمون",ant:"—",example:"يتغير معنى الكلمة بحسب السياق."}
 ];
-for(const x of meaningExtras){if(!words.some(w=>w.ar===x.ar))words.push(x)}\n$('#allWords').innerHTML=words.map(row).join('');
+for(const x of meaningExtras){if(!words.some(w=>w.ar===x.ar))words.push(x)}
+$('#allWords').innerHTML=words.map(row).join('');
 window.saveWord=ar=>{let s=saved();s=s.includes(ar)?s.filter(x=>x!==ar):[...s,ar];localStorage.setItem('mucemSaved',JSON.stringify(s));updateStats();renderSaved();document.querySelectorAll('[data-save="'+ar+'"]').forEach(b=>{b.classList.toggle('is-saved',s.includes(ar));b.textContent=s.includes(ar)?'★':'☆'});};
 function row(w){const yes=saved().includes(w.ar);return `<article class="word-row"><div class="details"><div class="arabic" dir="rtl">${w.ar}</div><b>${w.tr}</b><p>Kök: ${w.root} · Eş: ${w.syn} · Zıt: ${w.ant}</p><p><i>${w.example}</i></p></div><div class="word-actions"><button class="icon-btn" onclick="speak('${w.ar}')">🔊</button><button data-save="${w.ar}" class="icon-btn ${yes?'is-saved':''}" onclick="saveWord('${w.ar}')">${yes?'★':'☆'}</button></div></article>`}
 function wordCard(w){const yes=saved().includes(w.ar);return `<article class="word-card"><div class="arabic" dir="rtl">${w.ar}</div><b>${w.tr}</b><p>${w.example}</p><button data-save="${w.ar}" class="icon-btn ${yes?'is-saved':''}" onclick="saveWord('${w.ar}')">${yes?'★ Kaydedildi':'☆ Kaydet'}</button></article>`}
