@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 280" role="img" aria-label="Papatya tokalı, sarı elbiseli küçük kız">
+<defs><linearGradient id="hair" x2="1" y2="1"><stop stop-color="#865038"/><stop offset="1" stop-color="#45261f"/></linearGradient><linearGradient id="dress" x2="1" y2="1"><stop stop-color="#ffe18a"/><stop offset="1" stop-color="#e6a842"/></linearGradient></defs>
+<ellipse cx="90" cy="269" rx="55" ry="7" fill="#54202d" opacity=".12"/>
+<path d="M47 76Q32 37 60 23Q89 2 121 25Q151 45 134 90Q158 121 143 181Q132 207 112 196Q88 216 64 196Q31 205 37 160Q21 126 47 76Z" fill="url(#hair)" stroke="#593125" stroke-width="3"/>
+<path d="M68 212L67 252Q69 261 80 258L88 215M104 215L102 254Q109 261 119 256L124 208" fill="#f6c8a6" stroke="#9f6a52" stroke-width="2"/>
+<path d="M64 249Q55 259 59 266Q75 274 89 266L85 255Z M101 252Q98 263 104 268Q121 272 134 265Q131 255 120 251Z" fill="#fff9ed" stroke="#a78a79" stroke-width="2"/>
+<path d="M60 124Q42 134 36 159L48 173L65 150M120 124Q140 131 148 153L136 166L115 145" fill="#f4c5a1" stroke="#b78465" stroke-width="3" stroke-linecap="round"/>
+<path d="M65 119Q90 109 117 120L136 213Q93 236 43 213Z" fill="url(#dress)" stroke="#bf8b45" stroke-width="3"/>
+<path d="M65 119Q90 135 117 120M49 208Q90 223 130 208" fill="none" stroke="#fff0b4" stroke-width="3"/>
+<g fill="#fffdf2" stroke="#fffdf2" stroke-width="2"><g transform="translate(69 153)"><ellipse ry="8" rx="4"/><ellipse ry="8" rx="4" transform="rotate(60)"/><ellipse ry="8" rx="4" transform="rotate(120)"/></g><g transform="translate(109 176)"><ellipse ry="8" rx="4"/><ellipse ry="8" rx="4" transform="rotate(60)"/><ellipse ry="8" rx="4" transform="rotate(120)"/></g><g transform="translate(74 201)"><ellipse ry="7" rx="3.5"/><ellipse ry="7" rx="3.5" transform="rotate(60)"/><ellipse ry="7" rx="3.5" transform="rotate(120)"/></g></g><g fill="#e6b443"><circle cx="69" cy="153" r="4"/><circle cx="109" cy="176" r="4"/><circle cx="74" cy="201" r="4"/></g>
+<ellipse cx="90" cy="79" rx="43" ry="51" fill="#f7cfb1" stroke="#b98263" stroke-width="2"/>
+<path d="M46 76Q40 31 73 25Q108 13 132 47Q119 54 105 45Q84 61 56 55L50 86Z" fill="url(#hair)"/>
+<path d="M49 91Q32 126 47 168M130 86Q151 134 132 176" fill="none" stroke="#61382b" stroke-width="14" stroke-linecap="round"/>
+<ellipse cx="73" cy="85" rx="7" ry="10" fill="#53352e"/><ellipse cx="108" cy="85" rx="7" ry="10" fill="#53352e"/><circle cx="75" cy="82" r="2.7" fill="white"/><circle cx="110" cy="82" r="2.7" fill="white"/>
+<ellipse cx="57" cy="103" rx="10" ry="5" fill="#ed9994" opacity=".5"/><ellipse cx="123" cy="103" rx="10" ry="5" fill="#ed9994" opacity=".5"/>
+<path d="M83 108Q91 116 99 108" fill="none" stroke="#a45c5b" stroke-width="2.5" stroke-linecap="round"/>
+<g transform="translate(128 46)"><g fill="#fffdf1" stroke="#d9b989" stroke-width=".7"><ellipse ry="12" rx="5"/><ellipse ry="12" rx="5" transform="rotate(45)"/><ellipse ry="12" rx="5" transform="rotate(90)"/><ellipse ry="12" rx="5" transform="rotate(135)"/></g><circle r="6" fill="#efbb48"/></g>
+<path d="M40 154Q30 141 31 133" stroke="#f7cfb1" stroke-width="9" fill="none" stroke-linecap="round"/>
+</svg>
