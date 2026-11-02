@@ -158,3 +158,14 @@
 .overview-right{transform:none;border-radius:2px 10px 12px 2px;border-top-right-radius:10px;}
 .overview-left{transform:none;border-radius:10px 2px 2px 12px;}
 .overview-right:before{content:"";position:absolute;top:0;right:0;width:22px;height:22px;background:linear-gradient(135deg,#d8c6a9 0 48%,#fff9ed 50%);clip-path:polygon(0 0,100% 0,100% 100%);box-shadow:-2px 2px 4px #73583a22;opacity:.55;}
+
+
+/* Animated illustrated companion beside the open book */
+.overview-book-stage{position:relative;min-height:clamp(150px,20vw,210px);padding-right:clamp(92px,15vw,180px);}
+.book-companion{position:absolute;right:clamp(0px,5vw,58px);top:50%;transform:translateY(-48%);width:clamp(92px,13vw,148px);display:flex;flex-direction:column;align-items:center;gap:4px;z-index:5;animation:companionFloat 3.8s ease-in-out infinite;}
+.book-companion img{display:block;width:100%;height:auto;max-height:clamp(128px,18vw,190px);object-fit:contain;filter:drop-shadow(0 8px 7px #38202a22);transform-origin:50% 85%;animation:companionWave 4.6s ease-in-out infinite;}
+.companion-note{max-width:190px;padding:7px 10px;border:1px solid #d8c49f;border-radius:12px 12px 3px 12px;background:#fffaf0;color:#653445;text-align:center;font:13px Amiri,serif;line-height:1.35;box-shadow:0 5px 14px #3c1a2418;}
+@keyframes companionFloat{0%,100%{margin-top:0}50%{margin-top:-7px}}
+@keyframes companionWave{0%,88%,100%{transform:rotate(0)}92%{transform:rotate(3deg)}96%{transform:rotate(-3deg)}}
+@media(max-width:600px){.overview-book-stage{padding-right:76px;min-height:145px}.book-companion{right:0;width:82px}.book-companion img{max-height:118px}.companion-note{font-size:11px;padding:5px 6px;max-width:120px}}
+@media(prefers-reduced-motion:reduce){.book-companion,.book-companion img{animation:none}}
