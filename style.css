@@ -177,3 +177,11 @@
 .companion-art-pending:after{content:"";position:absolute;width:76px;height:25px;bottom:12px;border-radius:50% 50% 8px 8px;background:#713747}
 .companion-art-pending span{position:absolute;z-index:2;top:8px;right:calc(50% - 38px);font-size:22px;color:#fff2b8}
 @media(max-width:600px){.book-companion{right:0;width:86px}.companion-art-pending{height:104px}.companion-note{font-size:11px;padding:5px 6px;max-width:124px}}
+
+/* Small illustrated companion, proportioned to the book */
+.overview-book-stage{padding-right:clamp(68px,11vw,120px)}
+.book-companion{width:clamp(78px,10vw,112px);right:clamp(0px,2vw,24px);gap:2px}
+.book-companion .companion-girl{width:100%;height:auto;max-height:170px;object-fit:contain;animation:companionWave 4.6s ease-in-out infinite}
+.companion-note{font-size:12px;max-width:145px}
+@media(max-width:600px){.overview-book-stage{padding-right:58px}.book-companion{width:66px;right:0}.book-companion .companion-girl{max-height:110px}.companion-note{font-size:10px;max-width:95px}}
+@media(prefers-reduced-motion:reduce){.book-companion .companion-girl{animation:none}}
