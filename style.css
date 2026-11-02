@@ -250,3 +250,15 @@
 .book-intro.is-opening .intro-book:after{opacity:1}
 @media(max-width:540px){.closed-book-cover{gap:8px;border-width:6px}.closed-book-cover:before{inset:12px}.closed-book-cover:after{left:12px;width:9px}.closed-book-ornament{font-size:24px}.closed-book-subtitle{letter-spacing:1px}}
 @media(prefers-reduced-motion:reduce){.closed-book-cover{transition:none}.intro-book .book-spread{transition:none}}
+
+/* Real bound-book silhouette: portrait cover, visible spine and stacked pages */
+.intro-book{width:min(700px,92vw)!important;height:clamp(280px,42vw,390px)!important;overflow:visible!important;perspective:1600px!important}
+.closed-book-cover{inset:auto!important;left:50%!important;top:0!important;width:clamp(200px,51%,325px)!important;height:100%!important;transform:translateX(-50%) rotateY(-12deg) rotateZ(-2deg)!important;transform-style:preserve-3d!important;transform-origin:left center!important;border-radius:9px 19px 16px 9px!important;box-shadow:inset 16px 0 22px #19071188,inset 0 0 0 13px #612a39,inset 0 0 0 15px #d8b77c77,7px 7px 0 #a47c5a,11px 12px 0 #ead8b9,16px 17px 0 #bfa985,20px 24px 30px #13060b99!important}
+.closed-book-spine{position:absolute;top:1%;bottom:0;left:-24px;width:31px;border-radius:13px 4px 4px 13px;background:linear-gradient(90deg,#1d0812 0%,#512032 25%,#9e5961 54%,#3c1424 90%);border-left:2px solid #d7ad6d;border-right:3px solid #d7ad6d;box-shadow:inset 6px 0 9px #14040a99,-4px 7px 8px #12060b55;transform:rotateY(-32deg);transform-origin:right center}
+.closed-book-spine:before,.closed-book-spine:after{content:"";position:absolute;left:1px;right:1px;height:8px;border-top:2px solid #d5ac69;border-bottom:2px solid #d5ac69}
+.closed-book-spine:before{top:16%}.closed-book-spine:after{bottom:16%}
+.closed-book-pages{position:absolute;left:4%;right:-16px;bottom:-19px;height:19px;border-radius:0 0 12px 7px;background:repeating-linear-gradient(0deg,#d8c4a5 0 1px,#fff4df 1px 3px);border-bottom:3px solid #7a4a35;box-shadow:3px 4px 0 #3e1b27;transform:skewX(-24deg);z-index:-1}
+.closed-book-title{font-size:clamp(48px,7vw,76px)!important}
+.book-intro.is-opening .closed-book-cover{transform:translateX(-50%) rotateY(-100deg) rotateZ(-2deg)!important;opacity:0!important;visibility:hidden!important}
+.book-intro.is-opening .intro-book .book-spread{opacity:1!important}
+@media(max-width:540px){.intro-book{height:290px!important}.closed-book-cover{width:clamp(195px,67%,270px)!important}.closed-book-spine{left:-18px;width:24px}.closed-book-pages{bottom:-13px;height:13px}}
