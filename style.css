@@ -169,3 +169,11 @@
 @keyframes companionWave{0%,88%,100%{transform:rotate(0)}92%{transform:rotate(3deg)}96%{transform:rotate(-3deg)}}
 @media(max-width:600px){.overview-book-stage{padding-right:76px;min-height:145px}.book-companion{right:0;width:82px}.book-companion img{max-height:118px}.companion-note{font-size:11px;padding:5px 6px;max-width:120px}}
 @media(prefers-reduced-motion:reduce){.book-companion,.book-companion img{animation:none}}
+
+/* Corrected companion placeholder until the full-body anime artwork is ready */
+.book-companion{right:clamp(0px,3vw,34px);width:clamp(112px,14vw,158px);top:50%;transform:translateY(-48%);display:flex;flex-direction:column;align-items:center;gap:7px;z-index:5;animation:companionFloat 3.8s ease-in-out infinite}
+.companion-art-pending{width:100%;height:clamp(112px,15vw,164px);display:grid;place-items:center;position:relative;border:1px dashed #c6a978;border-radius:48% 48% 18px 18px;background:linear-gradient(160deg,#fffaf0,#eadcc9);color:#9a6b57;box-shadow:0 8px 18px #38202a18}
+.companion-art-pending:before{content:"";position:absolute;width:42px;height:42px;top:19px;border-radius:50%;background:#d8b99c;box-shadow:0 48px 0 14px #e8c76e}
+.companion-art-pending:after{content:"";position:absolute;width:76px;height:25px;bottom:12px;border-radius:50% 50% 8px 8px;background:#713747}
+.companion-art-pending span{position:absolute;z-index:2;top:8px;right:calc(50% - 38px);font-size:22px;color:#fff2b8}
+@media(max-width:600px){.book-companion{right:0;width:86px}.companion-art-pending{height:104px}.companion-note{font-size:11px;padding:5px 6px;max-width:124px}}
