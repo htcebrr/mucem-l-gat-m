@@ -105,19 +105,49 @@ document.querySelectorAll('[data-direction]').forEach(btn=>btn.addEventListener(
  document.querySelector('#searchInput').placeholder=dictionaryDirection==='tr-ar'?'Türkçe kelime yaz...':'Arapça kelime yaz...';
  document.querySelector('#searchResults').innerHTML='';
 }));
+/* Search local entries first, then independent online translation providers. */
 const baseSearch=search;
+const expandedEntries=[
+['eğitim','تَعْلِيم','ع ل م','التعليم أساس تقدم المجتمعات.'],['öğretmen','مُعَلِّم','ع ل م','المعلم يساعد الطلاب.'],['öğrenci','طَالِب','ط ل ب','الطالب يقرأ الكتاب.'],['okul','مَدْرَسَة','د ر س','ذهبت إلى المدرسة.'],
+['kitap','كِتَاب','ك ت ب','قرأت كتاباً مفيداً.'],['kalem','قَلَم','ق ل م','أكتب بالقلم.'],['ev','بَيْت','ب ي ت','هذا بيتي.'],['aile','عَائِلَة','ع و ل','أحب عائلتي.'],
+['sevgi','حُبّ','ح ب ب','الحب يجمع الناس.'],['arkadaş','صَدِيق','ص د ق','صديقي يساعدني.'],['su','مَاء','م و ه','أشرب الماء.'],['yemek','طَعَام','ط ع م','الطعام لذيذ.'],
+['sağlık','صِحَّة','ص ح ح','الصحة نعمة.'],['seyahat','سَفَر','س ف ر','السفر يوسع الآفاق.'],['adalet','عَدَالَة','ع د ل','العدل أساس الحكم.'],['kültür','ثَقَافَة','ث ق ف','أتعلم عن ثقافات مختلفة.'],
+['dil','لُغَة','ل غ و','اللغة العربية جميلة.'],['kelime','كَلِمَة','ك ل م','تعلمت كلمة جديدة.'],['zaman','وَقْت','و ق ت','الوقت ثمين.'],['hayat','حَيَاة','ح ي ي','الحياة مليئة بالفرص.'],
+['çalışmak','دَرَسَ','د ر س','درس الطالب بجد.'],['öğrenmek','تَعَلَّمَ','ع ل م','تعلمت اللغة العربية.'],['anlamak','فَهِمَ','ف ه م','فهمت الدرس.'],['yazmak','كَتَبَ','ك ت ب','كتب رسالة.'],
+['okumak','قَرَأَ','ق ر أ','قرأ الطالب النص.'],['konuşmak','تَكَلَّمَ','ك ل م','تكلم بالعربية.'],['güzel','جَمِيل','ج م ل','هذا منظر جميل.'],['büyük','كَبِير','ك ب ر','هذا بيت كبير.']
+];
+for(const [tr,ar,root,example] of expandedEntries)if(!words.some(w=>normalizeDictionary(w.ar)===normalizeDictionary(ar)))words.push({ar,tr,root,syn:'—',ant:'—',example});
+document.querySelector('#allWords').innerHTML=words.map(row).join('');
+const lookupCache=new Map();
+const withTimeout=async(url)=>{const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),6500);try{const r=await fetch(url,{signal:controller.signal});if(!r.ok)throw Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(timer)}};
+const arabicChars=/[\u0600-\u06ff]/;
+const renderLookup=(w,source)=>'<article class="word-row"><div class="details"><div class="arabic" dir="rtl">'+esc(w.ar)+'</div><b>'+esc(w.tr)+'</b><p>'+esc(w.root&&w.root!=='—'?'Kök: '+w.root:'')+'</p>'+(w.example?'<p dir="rtl"><i>'+esc(w.example)+'</i></p>':'')+'<small class="muted">Kaynak: '+esc(source)+'</small></div><div class="word-actions"><button class="icon-btn" data-speak-ar="'+esc(w.ar)+'" aria-label="Arapça telaffuz">🔊</button><button class="icon-btn" data-bookmark-ar="'+esc(w.ar)+'" aria-label="Kaydet">☆</button></div></article>';
+const bindLookupButtons=()=>{document.querySelectorAll('#searchResults [data-speak-ar]').forEach(b=>b.onclick=()=>speak(b.dataset.speakAr));document.querySelectorAll('#searchResults [data-bookmark-ar]').forEach(b=>b.onclick=()=>saveWord(b.dataset.bookmarkAr))};
 search=async function(){
  const q=document.querySelector('#searchInput').value.trim();
- if(!q)return baseSearch();
- if(dictionaryDirection==='tr-ar'){
-   const matches=words.filter(w=>normalizeDictionary(w.tr).includes(normalizeDictionary(q))||w.tr.split(/[,;]/).some(t=>normalizeDictionary(t).trim()===normalizeDictionary(q)));
-   if(matches.length){
-     document.querySelector('#searchResults').innerHTML='<div class="section-heading"><h3>Türkçeden Arapçaya sonuçlar</h3></div>'+matches.map(w=>'<article class="word-row"><div class="details"><b>'+esc(w.tr)+'</b><div class="arabic" dir="rtl">'+esc(w.ar)+'</div><p>Kök: '+esc(w.root)+'</p><p dir="rtl">'+esc(w.example)+'</p></div><button class="icon-btn" data-speak-ar="'+esc(w.ar)+'">🔊</button></article>').join('');
-     document.querySelectorAll('[data-speak-ar]').forEach(b=>b.onclick=()=>speak(b.dataset.speakAr));
-     return;
+ const results=document.querySelector('#searchResults');
+ if(!q){results.innerHTML='';return}
+ const direction=dictionaryDirection, arabic=direction==='ar-tr';
+ const local=words.filter(w=>normalizeDictionary(arabic?w.ar:w.tr).includes(normalizeDictionary(q)));
+ const localMarkup=local.length?'<h3>MU’CEM kelimeleri</h3>'+local.slice(0,24).map(w=>renderLookup(w,'MU’CEM kelime havuzu')).join(''):'';
+ results.innerHTML=localMarkup+'<p class="muted" id="onlineStatus">Çevrim içi sözlükte aranıyor…</p>';
+ bindLookupButtons();
+ const key=direction+'|'+normalizeDictionary(q);
+ try{
+   let translated=lookupCache.get(key);
+   if(!translated){
+     const from=arabic?'ar':'tr',to=arabic?'tr':'ar';
+     const data=await withTimeout('https://api.mymemory.translated.net/get?q='+encodeURIComponent(q)+'&langpair='+from+'|'+to);
+     translated=[data.responseData?.translatedText,...(data.matches||[]).filter(m=>Number(m.quality)>50).map(m=>m.translation)].filter(Boolean).filter(s=>!/<[^>]+>|MYMEMORY WARNING|INVALID LANGUAGE/i.test(s));
+     translated=[...new Set(translated)].slice(0,5);
+     if(translated.length)lookupCache.set(key,translated);
    }
- }
- return baseSearch();
+   const online=translated.map(t=>({ar:arabic?q:t,tr:arabic?t:q,root:'—',example:''})).filter(w=>w.ar&&w.tr);
+   const unique=online.filter(w=>!local.some(l=>normalizeDictionary(l.ar)===normalizeDictionary(w.ar)));
+   results.innerHTML=localMarkup+(unique.length?'<h3>Çevrim içi çeviri önerileri</h3>'+unique.map(w=>renderLookup(w,'MyMemory çeviri servisi')).join(''):'<p class="muted">Çevrim içi kaynakta ek karşılık bulunamadı.</p>');
+   unique.forEach(w=>{if(!words.some(x=>x.ar===w.ar))words.push(w)});
+   bindLookupButtons();
+ }catch(e){results.innerHTML=localMarkup+'<p class="muted">Çevrim içi kaynak şu anda yanıt vermiyor. '+(local.length?'Yukarıdaki yerel sonuçları kullanabilirsin.':'Başka bir kelime deneyebilir veya biraz sonra yeniden arayabilirsin.')+'</p>';bindLookupButtons()}
 };
 const practiceNote=document.querySelector('#practiceCompanionText');
 const practiceGirl=document.querySelector('.practice-companion');
