@@ -164,3 +164,58 @@ document.querySelector('#nextQuiz').addEventListener('click',()=>{
  if(practiceNote)practiceNote.textContent='هيا بنا! Yeni kelimeye hazır mısın?';
  practiceGirl.classList.remove('celebrate','encourage');
 });
+
+
+/* Remove the checkerboard pixels baked into the uploaded companion PNG.
+   Only light neutral pixels connected to the outer image boundary are erased,
+   protecting the girl's white flowers, socks and eyes inside her silhouette. */
+(function makeCompanionBackgroundTransparent(){
+  function clean(img){
+    if(img.dataset.bgCleaned)return;
+    img.dataset.bgCleaned='true';
+    const run=()=>{
+      if(!img.naturalWidth||!img.naturalHeight)return;
+      try{
+        const canvas=document.createElement('canvas');
+        canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
+        const ctx=canvas.getContext('2d',{willReadFrequently:true});
+        ctx.drawImage(img,0,0);
+        const frame=ctx.getImageData(0,0,canvas.width,canvas.height);
+        const p=frame.data,w=canvas.width,h=canvas.height,n=w*h;
+        const seen=new Uint8Array(n),queue=new Int32Array(n);
+        let head=0,tail=0;
+        const isBackground=i=>{
+          const k=i*4,r=p[k],g=p[k+1],b=p[k+2];
+          return p[k+3]<24||(Math.min(r,g,b)>207&&Math.max(r,g,b)-Math.min(r,g,b)<23);
+        };
+        const add=i=>{
+          if(i<0||i>=n||seen[i]||!isBackground(i))return;
+          seen[i]=1;queue[tail++]=i;
+        };
+        for(let x=0;x<w;x++){add(x);add((h-1)*w+x)}
+        for(let y=0;y<h;y++){add(y*w);add(y*w+w-1)}
+        while(head<tail){
+          const i=queue[head++],x=i%w;
+          if(x>0)add(i-1);
+          if(x<w-1)add(i+1);
+          if(i>=w)add(i-w);
+          if(i<n-w)add(i+w);
+        }
+        // Feather one pixel at the boundary to avoid bright checker outlines.
+        for(let i=0;i<n;i++){
+          if(seen[i]){p[i*4+3]=0;continue}
+          const x=i%w,k=i*4;
+          if(Math.min(p[k],p[k+1],p[k+2])>170&&
+             ((x>0&&seen[i-1])||(x<w-1&&seen[i+1])||(i>=w&&seen[i-w])||(i<n-w&&seen[i+w]))){
+            p[k+3]=Math.min(p[k+3],110);
+          }
+        }
+        ctx.putImageData(frame,0,0);
+        img.src=canvas.toDataURL('image/png');
+      }catch(e){console.warn('Companion transparency processing unavailable',e)}
+    };
+    if(img.complete&&img.naturalWidth)run();
+    else img.addEventListener('load',run,{once:true});
+  }
+  document.querySelectorAll('img[src*="mucem-girl-transparent.png"]').forEach(clean);
+})();
