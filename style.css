@@ -232,3 +232,21 @@
 .practice-companion.encourage .practice-companion-bubble{border-color:#e5bf80;background:#fff9ed}
 .dictionary-source-note{text-align:center;font-size:11px;margin:10px auto 0;max-width:540px}
 #searchResults h3{margin:22px 0 12px;color:#713747}
+
+/* Final intro: a physically CLOSED full-width cover, then reveal the open spread */
+.intro-book{isolation:isolate;perspective:none!important;transform:none!important;animation:none!important}
+.intro-book .book-spread{opacity:0;transition:opacity .35s ease .2s}
+.intro-book .book-cover{display:none!important}
+.intro-book:after{opacity:0}
+.intro-book:before{z-index:0}
+.closed-book-cover{position:absolute;inset:0;z-index:15;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;border-radius:14px 20px 20px 14px;border:9px double #d8b77c;background:radial-gradient(ellipse at 50% 42%,#8e4a57,#5b2433 60%,#2d101c);color:#f3dca6;box-shadow:inset 16px 0 20px #19071188,inset 0 0 0 14px #612a39,inset 0 0 0 16px #d8b77c77,9px 13px 0 #dbc8a8,12px 17px 0 #3c1c26,0 30px 35px #13060b99;transform-origin:0 50%;transition:transform 1.4s cubic-bezier(.2,.7,.2,1),opacity .35s ease 1.12s,visibility .35s ease 1.12s}
+.closed-book-cover:before{content:"";position:absolute;inset:21px;border:2px solid #d6b575;border-radius:5px 12px 12px 5px;pointer-events:none}
+.closed-book-cover:after{content:"";position:absolute;top:0;bottom:0;left:20px;width:15px;background:linear-gradient(90deg,#280c17,#ad6c73,#3e1725);border-left:2px solid #c99f64;border-right:2px solid #c99f64}
+.closed-book-title{font:clamp(52px,9vw,96px) Amiri,serif;text-shadow:0 4px 5px #210a12;z-index:1}
+.closed-book-subtitle{font:700 clamp(11px,2vw,17px) 'DM Sans',sans-serif;letter-spacing:2px;z-index:1}
+.closed-book-ornament{font-size:34px;z-index:1}
+.book-intro.is-opening .closed-book-cover{transform:perspective(1400px) rotateY(-92deg);opacity:0;visibility:hidden}
+.book-intro.is-opening .intro-book .book-spread{opacity:1}
+.book-intro.is-opening .intro-book:after{opacity:1}
+@media(max-width:540px){.closed-book-cover{gap:8px;border-width:6px}.closed-book-cover:before{inset:12px}.closed-book-cover:after{left:12px;width:9px}.closed-book-ornament{font-size:24px}.closed-book-subtitle{letter-spacing:1px}}
+@media(prefers-reduced-motion:reduce){.closed-book-cover{transition:none}.intro-book .book-spread{transition:none}}
