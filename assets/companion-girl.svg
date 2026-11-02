@@ -21,6 +21,12 @@
 <path d="M89 87L102 89M136 89L150 87" stroke="#65402f" stroke-width="3" stroke-linecap="round"/>
 <ellipse cx="79" cy="125" rx="15" ry="8" fill="#e9958b" opacity=".45"/><ellipse cx="161" cy="125" rx="15" ry="8" fill="#e9958b" opacity=".45"/>
 <path d="M111 130Q119 141 128 130" fill="none" stroke="#aa5d59" stroke-width="3" stroke-linecap="round"/>
+<!-- refined long layered hair: soft face-framing waves and fine highlights -->
+<path d="M54 118C41 143 43 170 35 194C24 228 39 255 59 260C45 243 49 222 56 205C65 184 54 155 69 127" fill="#75442f" stroke="#533020" stroke-width="2"/>
+<path d="M180 116C197 149 182 179 198 208C215 243 199 263 175 271C190 250 181 227 175 204C166 174 186 150 169 126" fill="#633927" stroke="#48291f" stroke-width="2"/>
+<path d="M42 192C33 214 38 240 53 249M190 190C202 216 198 244 183 256M51 146C48 171 55 185 48 208M181 137C177 157 182 180 189 197" fill="none" stroke="#d4a071" stroke-width="3" opacity=".7" stroke-linecap="round"/>
+<path d="M78 52C69 66 64 77 63 93M89 43C83 62 79 76 74 84M108 34C101 52 101 65 94 76M136 38C145 52 154 58 158 71M154 48C166 59 170 70 174 88" fill="none" stroke="#d7a878" stroke-width="2.5" opacity=".78" stroke-linecap="round"/>
+<path d="M72 94Q66 109 69 125M166 92Q174 108 168 125" fill="none" stroke="#8b5337" stroke-width="5" stroke-linecap="round"/>
 <!-- hair side curls --> <path d="M66 94C45 133 54 161 42 189C27 214 44 240 58 243M173 89C188 124 174 166 188 194C203 226 188 246 176 247" fill="none" stroke="#603927" stroke-width="17" stroke-linecap="round"/>
 <path d="M58 107C46 141 59 162 47 196M180 119C171 157 188 187 187 207" fill="none" stroke="#b77f54" stroke-width="4" stroke-linecap="round"/>
 <!-- daisy hair clip --> <g transform="translate(174 66) scale(1.1)"><use href="#flower" transform="scale(1.45)"/></g>
