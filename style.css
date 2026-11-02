@@ -318,9 +318,6 @@
 .book-companion{animation:muCompanionBreathe 5.5s ease-in-out infinite}
 @media(max-width:600px){.book-companion .companion-girl{max-height:130px!important}.practice-companion img{max-height:150px!important}}
 
-/* Remove the visible checkerboard backdrop of the uploaded front-facing PNG.
-   The checker pattern is baked into the image, so blending makes its light
-   pixels inherit the page color while preserving the illustrated character. */
-.book-companion,.practice-companion{isolation:auto!important}
-.book-companion .companion-girl,.practice-companion img[src$="mucem-girl-front.png"]{mix-blend-mode:multiply!important;background:none!important;box-shadow:none!important;border:0!important;filter:none!important}
-.practice-companion{background:transparent!important;box-shadow:none!important;border:0!important}
+
+/* True transparent companion PNG: no artificial blending needed. */
+.book-companion .companion-girl,.practice-companion img[src$="mucem-girl-transparent.png"]{mix-blend-mode:normal!important;background:transparent!important;box-shadow:none!important;border:0!important;filter:drop-shadow(0 8px 9px #35192325)!important}
