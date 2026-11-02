@@ -93,3 +93,44 @@ $('#showLogin').onclick=()=>setAuthMode('login');$('#showRegister').onclick=()=>
 $('#authSubmit').onclick=()=>{const email=$('#authEmail').value.trim().toLowerCase(),pass=$('#authPassword').value,name=$('#authName').value.trim();if(!email||!pass||(authMode==='register'&&!name)){ $('#authMessage').textContent='Lütfen gerekli alanları doldur.';return;}let users=JSON.parse(localStorage.getItem('mucemUsers')||'{}');if(authMode==='register'){if(users[email]){$('#authMessage').textContent='Bu e-posta zaten kayıtlı.';return;}users[email]={pass,name};localStorage.setItem('mucemUsers',JSON.stringify(users));}else if(!users[email]||users[email].pass!==pass){$('#authMessage').textContent='E-posta veya şifre hatalı.';return;}localStorage.setItem('mucemSession',email);$('#welcomeUser').textContent='Merhaba, '+(users[email].name||name);$('#accountButton').textContent='Çıkış yap';modal.classList.remove('open');};
 $('#accountButton').onclick=()=>{if(localStorage.getItem('mucemSession')){localStorage.removeItem('mucemSession');$('#welcomeUser').textContent='Misafir';$('#accountButton').textContent='Giriş / Kaydol'}else{modal.classList.add('open')}};
 const current=localStorage.getItem('mucemSession');if(current){const us=JSON.parse(localStorage.getItem('mucemUsers')||'{}');if(us[current]){$('#welcomeUser').textContent='Merhaba, '+us[current].name;$('#accountButton').textContent='Çıkış yap'}}
+
+/* Two-way dictionary and contextual exercise companion */
+let dictionaryDirection='ar-tr';
+const normalizeDictionary=s=>String(s||'').toLocaleLowerCase('tr-TR').normalize('NFKD').replace(/[\u064b-\u065f\u0670]/g,'').trim();
+document.querySelectorAll('[data-direction]').forEach(btn=>btn.addEventListener('click',()=>{
+ dictionaryDirection=btn.dataset.direction;
+ document.querySelectorAll('[data-direction]').forEach(b=>b.classList.toggle('active',b===btn));
+ document.querySelector('.book-top span:first-child').textContent=dictionaryDirection==='tr-ar'?'المعجم التركي العربي':'المعجم العربي التركي';
+ document.querySelector('.book-top span:last-child').textContent=dictionaryDirection==='tr-ar'?'TÜRKÇE — ARAPÇA':'ARAPÇA — TÜRKÇE';
+ document.querySelector('#searchInput').placeholder=dictionaryDirection==='tr-ar'?'Türkçe kelime yaz...':'Arapça kelime yaz...';
+ document.querySelector('#searchResults').innerHTML='';
+}));
+const baseSearch=search;
+search=async function(){
+ const q=document.querySelector('#searchInput').value.trim();
+ if(!q)return baseSearch();
+ if(dictionaryDirection==='tr-ar'){
+   const matches=words.filter(w=>normalizeDictionary(w.tr).includes(normalizeDictionary(q))||w.tr.split(/[,;]/).some(t=>normalizeDictionary(t).trim()===normalizeDictionary(q)));
+   if(matches.length){
+     document.querySelector('#searchResults').innerHTML='<div class="section-heading"><h3>Türkçeden Arapçaya sonuçlar</h3></div>'+matches.map(w=>'<article class="word-row"><div class="details"><b>'+esc(w.tr)+'</b><div class="arabic" dir="rtl">'+esc(w.ar)+'</div><p>Kök: '+esc(w.root)+'</p><p dir="rtl">'+esc(w.example)+'</p></div><button class="icon-btn" data-speak-ar="'+esc(w.ar)+'">🔊</button></article>').join('');
+     document.querySelectorAll('[data-speak-ar]').forEach(b=>b.onclick=()=>speak(b.dataset.speakAr));
+     return;
+   }
+ }
+ return baseSearch();
+};
+const practiceNote=document.querySelector('#practiceCompanionText');
+const practiceGirl=document.querySelector('.practice-companion');
+const quizOptions=document.querySelector('#quizOptions');
+quizOptions.addEventListener('click',event=>{
+ const button=event.target.closest('button[data-answer]');
+ if(!button||!answered||!practiceNote)return;
+ const correct=button.dataset.answer===words[quizIndex%words.length].ar;
+ practiceNote.textContent=correct?'أحسنتِ! Harika, doğru bildin! Seninle gurur duyuyorum.':'لا بأس! Üzülme, birlikte öğreniyoruz. Bir sonraki soruda tekrar dene!';
+ practiceGirl.classList.toggle('celebrate',correct);
+ practiceGirl.classList.toggle('encourage',!correct);
+});
+document.querySelector('#nextQuiz').addEventListener('click',()=>{
+ if(practiceNote)practiceNote.textContent='هيا بنا! Yeni kelimeye hazır mısın?';
+ practiceGirl.classList.remove('celebrate','encourage');
+});
