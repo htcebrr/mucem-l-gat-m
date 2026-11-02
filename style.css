@@ -273,3 +273,27 @@
 .closed-book-cover{z-index:20!important}
 .closed-book-pages{left:7%!important;right:0!important;bottom:-12px!important;height:12px!important;transform:skewX(-12deg)!important;overflow:hidden}
 @media(max-width:540px){.book-intro{padding:18px 12px 26px!important}.intro-book{height:min(290px,48vh)!important}}
+
+/* MU'CEM intro rebuilt as one isolated book. No old .intro-book layers. */
+.book-intro{box-sizing:border-box;justify-content:center!important;align-items:center!important;padding:24px 16px!important;overflow:hidden!important}
+.mucem-intro-stage{position:relative;width:min(690px,94vw);height:clamp(260px,43vw,390px);flex:none;display:grid;place-items:center;isolation:isolate}
+.mucem-closed-book{position:relative;width:clamp(190px,44%,315px);height:100%;filter:drop-shadow(0 20px 17px #1a0711aa);transition:opacity .45s ease,transform 1.15s ease;z-index:2;transform:translateY(0);box-sizing:border-box}
+.mucem-book-cover{position:absolute;inset:0 0 10px 0;z-index:3;border:5px solid #b48a55;border-radius:8px 17px 15px 7px;box-sizing:border-box;background:radial-gradient(ellipse at 53% 38%,#8c4858,#642b3b 65%,#3a1425);box-shadow:inset 0 0 0 3px #3d1523,inset 0 0 0 6px #d9b778,inset 15px 0 19px #210b1788,3px 4px 0 #381722;display:grid;place-items:center}
+.mucem-book-spine{position:absolute;z-index:4;left:-13px;top:2px;bottom:12px;width:22px;border-radius:10px 2px 2px 10px;background:linear-gradient(90deg,#260d19,#985765 48%,#43192b);border-left:2px solid #d2aa71;border-right:2px solid #bc905b;box-shadow:inset 3px 0 6px #230a15}
+.mucem-book-spine:before,.mucem-book-spine:after{content:"";position:absolute;left:0;right:0;height:6px;border-top:2px solid #cda66c;border-bottom:2px solid #cda66c}
+.mucem-book-spine:before{top:14%}.mucem-book-spine:after{bottom:14%}
+.mucem-page-edge{position:absolute;z-index:1;bottom:0;left:5px;right:4px;height:12px;border-radius:0 0 10px 10px;background:repeating-linear-gradient(0deg,#f9ecd5 0 2px,#c8ae85 2px 3px);box-shadow:0 2px 0 #6e4c37}
+.mucem-gold-frame{box-sizing:border-box;width:calc(100% - 34px);height:calc(100% - 35px);border:2px solid #d9b778;border-radius:5px 11px 10px 5px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:9px;text-align:center;color:#f5dca3;padding:12px 5px}
+.mucem-gold-frame strong{font:700 clamp(40px,6vw,67px) Amiri,serif;line-height:1.35}
+.mucem-cover-label{font:700 clamp(21px,3.4vw,35px) Georgia,serif;letter-spacing:2px}
+.mucem-cover-caption{font:700 clamp(9px,1.35vw,12px) 'DM Sans',sans-serif;letter-spacing:1px}
+.mucem-cover-flourish{font-size:23px;color:#e2be7b}
+.mucem-open-book{position:absolute;inset:0;display:flex;align-items:stretch;opacity:0;visibility:hidden;transform:scale(.84);transition:opacity .65s ease .3s,transform .9s ease .2s,visibility 0s linear .95s;filter:drop-shadow(0 14px 12px #1a0711aa);z-index:1}
+.mucem-open-page{box-sizing:border-box;width:50%;background:linear-gradient(95deg,#e0ccb0,#fff9e9 15%,#fffdf5 86%,#e5d3b6);border:2px solid #c5a984;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#592d39;font:32px Amiri,serif}
+.mucem-open-page:first-child{border-radius:12px 0 0 12px;box-shadow:inset -10px 0 14px #76543825}
+.mucem-open-page:last-child{border-radius:0 12px 12px 0;box-shadow:inset 10px 0 14px #76543825}
+.mucem-open-page small{font:12px 'DM Sans',sans-serif;color:#846b59;text-align:center}
+.book-intro.is-opening .mucem-closed-book{opacity:0;transform:scale(.92) translateY(-8px);pointer-events:none}
+.book-intro.is-opening .mucem-open-book{opacity:1;visibility:visible;transform:scale(1);transition:opacity .65s ease .3s,transform .9s ease .2s,visibility 0s}
+@media(max-width:540px){.mucem-intro-stage{height:min(310px,48vh)}.mucem-closed-book{width:clamp(188px,64%,260px)}.mucem-gold-frame{gap:5px}.mucem-open-page{font-size:24px}.mucem-open-page small{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.mucem-closed-book,.mucem-open-book{transition:none}}
