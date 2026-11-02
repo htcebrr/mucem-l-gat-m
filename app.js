@@ -15,7 +15,45 @@ function row(w){return `<article class="word-row"><div class="details"><div clas
 window.saveWord=ar=>{let s=saved();if(!s.includes(ar)){s.push(ar);localStorage.setItem('mucemSaved',JSON.stringify(s))}updateStats();renderSaved();};
 window.speak=ar=>{if('speechSynthesis'in window){let u=new SpeechSynthesisUtterance(ar);u.lang='ar-SA';speechSynthesis.speak(u)}else alert('Tarayıcınız seslendirmeyi desteklemiyor.')};
 function renderSaved(){let s=saved();$('#savedWords').innerHTML=s.length?words.filter(w=>s.includes(w.ar)).map(row).join(''):'<p class="muted">Henüz kelime kaydetmedin. Sözlükten yıldız simgesine dokunabilirsin.</p>'}
-function search(){let q=$('#searchInput').value.trim().toLowerCase();let found=words.filter(w=>[w.ar,w.tr,w.root,w.syn,w.ant].join(' ').toLowerCase().includes(q));$('#searchResults').innerHTML=q?(found.length?found.map(row).join(''):'<p class="muted">Bu demo sözlüğünde eşleşme bulunamadı.</p>'):''}
+
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function search(){
+ const q=$('#searchInput').value.trim();
+ if(!q){$('#searchResults').innerHTML='';return}
+ const local=words.filter(w=>[w.ar,w.tr,w.root,w.syn,w.ant].join(' ').toLowerCase().includes(q.toLowerCase()));
+ $('#searchResults').innerHTML='<p class="muted">Sözlük kaynakları aranıyor…</p>';
+ try{
+  const lang=/[\u0600-\u06FF]/.test(q)?'ar':'tr';
+  const url='https://freedictionaryapi.com/api/v1/entries/'+lang+'/'+encodeURIComponent(q)+'?translations=true';
+  const response=await fetch(url,{headers:{'Accept':'application/json'}});
+  if(!response.ok) throw new Error('API response '+response.status);
+  const data=await response.json();
+  const entries=Array.isArray(data.entries)?data.entries:[];
+  const cards=[];
+  entries.forEach(entry=>{
+   const senses=Array.isArray(entry.senses)?entry.senses:[];
+   const defs=senses.map(s=>s.definition).filter(Boolean);
+   const translations=senses.flatMap(s=>s.translations||[]).concat(entry.translations||[]);
+   const trWords=[...new Set(translations.filter(t=>t.language?.code==='tr').map(t=>t.word).filter(Boolean))];
+   const arWords=[...new Set(translations.filter(t=>t.language?.code==='ar').map(t=>t.word).filter(Boolean))];
+   const isArabic=entry.language?.code==='ar';
+   const head=q;
+   const translation=isArabic?(trWords.join(', ')||'Türkçe karşılık bulunamadı'):(arWords.join('، ')||'Arapça karşılık bulunamadı');
+   const examples=senses.flatMap(s=>s.examples||[]).slice(0,2);
+   const pos=entry.partOfSpeech||'';
+   cards.push('<article class="word-row api-word"><div class="details"><div class="arabic" dir="'+(isArabic?'rtl':'auto')+'">'+esc(head)+'</div><b>'+esc(translation)+'</b><p>'+esc(pos)+'</p>'+defs.slice(0,4).map(d=>'<p>'+esc(d)+'</p>').join('')+examples.map(e=>'<p><i>'+esc(e)+'</i></p>').join('')+'</div><div class="word-actions"><button class="icon-btn" onclick="speak(\''+esc(head).replace(/\\'/g,"\\\\'")+'\')">🔊</button></div></article>');
+   if(isArabic&&!words.some(w=>w.ar===head)){
+    words.push({ar:head,tr:translation,root:'—',syn:(entry.synonyms||[]).join('، ')||'—',ant:(entry.antonyms||[]).join('، ')||'—',example:examples[0]||defs[0]||''});
+   }
+  });
+  const localHtml=local.map(row).join('');
+  $('#searchResults').innerHTML=(cards.length?'<div class="api-results"><span class="eyebrow">ÇEVRİM İÇİ SÖZLÜK · WIKTIONARY VERİSİ</span>'+cards.join('')+'<small class="muted">Kaynak: <a href="'+esc(data.source?.url||'https://www.wiktionary.org/')+'" target="_blank" rel="noopener">Wiktionary</a> · CC BY-SA 4.0</small></div>':'<p class="muted">Çevrim içi kaynakta bu kelime için kayıt bulunamadı.</p>')+(localHtml?'<div class="section-heading"><h3>MU’CEM yerel kelimeleri</h3></div>'+localHtml:'');
+  if(!cards.length&&!local.length) $('#searchResults').innerHTML='<p class="muted">Bu kelime için sonuç bulunamadı. Yazımı kontrol ederek tekrar dene.</p>';
+ }catch(err){
+  $('#searchResults').innerHTML=(local.length?'<div class="section-heading"><h3>MU’CEM kelimeleri</h3></div>'+local.map(row).join(''):'<p class="muted">Çevrim içi sözlük şu anda yanıt vermiyor. İnternet bağlantını kontrol edip tekrar dene.</p>');
+ }
+}
+
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.go)));
 function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===id));let titles={overview:'Merhaba, hoş geldin.',dictionary:'Arapça sözlük',saved:'Kişisel kelime arşivin',practice:'Bilgini pekiştir',progress:'Öğrenme yolculuğun',translation:'Çeviri atölyesi'};$('#pageTitle').textContent=titles[id];if(id==='saved')renderSaved();if(id==='progress')updateStats()}
